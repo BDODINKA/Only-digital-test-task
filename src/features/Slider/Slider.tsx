@@ -41,8 +41,12 @@ export const Slider = () => {
           swiperRef.current = swiper
         }}
         pagination={{ clickable: true, enabled: false }} //show pagination
-        onSlideChange={() => console.log('slide change')}
-        style={{ width: '90%' }}
+        style={{ width: '90%', height: '100px' }}
+        centeredSlides={true}
+        grabCursor={true}
+        className={style.swiper}
+        containerModifierClass={style.swrapper}
+        freeMode={true}
       >
         {datas &&
           datas['world'].map((el, i) => (

@@ -59,6 +59,7 @@ export const Circle = () => {
         </div>
       </div>
       <div className={`${style.circle} active`}>
+        {<div className={`${style.category} show`}>{Object.keys(category)}</div>}
         {data.category.map((el, i) => (
           <div className={style.block} style={{ rotate: rotateCircle[i] + 'deg' }} key={i}>
             <div className={style.square} onClick={() => onClickHandler(el, i)}>
@@ -72,7 +73,6 @@ export const Circle = () => {
           </div>
         ))}
       </div>
-      {<div className={`${style.category} show`}>{Object.keys(category)}</div>}
     </div>
   )
 }

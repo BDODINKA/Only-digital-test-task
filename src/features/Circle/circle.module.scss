@@ -4,14 +4,14 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
   z-index: 10;
 
 
   .circle {
     width: 530px;
     height: 530px;
-    position: absolute;
+    position: relative;
     border: 1px solid black;
     border-radius: 50%;
     display: flex;
@@ -52,16 +52,24 @@
   }
   .category{
     position: absolute;
-    top: 228px;
-    left: 65%;
+    top: 30px;
+    left: 90%;
+    font-family: "PT Sans", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+
   }
   .buttonBox{
     position: absolute;
-    left: 10%;
-    bottom: 30%;
+    left: 80px;
+    bottom: 20%;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    height: 88px;
+    align-items: flex-start;
+    justify-content: space-between;
     .window{
       text-align: center;
     }

@@ -1,0 +1,32 @@
+.circle {
+  width: 530px;
+  height: 530px;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  .block {
+    width: 270px;
+    left: -6px;
+    transform-origin: 100% 4px;
+    transform: rotate(120deg);
+    position: absolute;
+  }
+
+  .square {
+    background: white;
+    border: 1px solid black;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+}
+.category{
+
+}
+
+
+
+
+

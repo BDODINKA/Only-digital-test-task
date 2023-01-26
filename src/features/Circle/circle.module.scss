@@ -1,32 +1,87 @@
-.circle {
-  width: 530px;
-  height: 530px;
-  position: absolute;
-  border: 1px solid black;
-  border-radius: 50%;
+.wrapper{
   display: flex;
   align-items: center;
-  .block {
-    width: 270px;
-    left: -6px;
-    transform-origin: 100% 4px;
-    transform: rotate(120deg);
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10;
+
+
+  .circle {
+    width: 530px;
+    height: 530px;
     position: absolute;
-  }
-
-  .square {
-    background: white;
     border: 1px solid black;
-    width: 6px;
-    height: 6px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    .block {
+      width: 269px;
+      left: -5px;
+      height: 56px;
+      transform-origin: 100% 27px;
+      transform: rotate(120deg);
+      position: absolute;
+      .square {
+        background: white;
+        border: 1px solid black;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 0;
+        &:hover{
+          background: #EF5DA8;
+          transform: translate(-40% ,-50%);
+          border: 1px solid black;
+          width: 56px;
+          height: 56px;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .index{
+          position: absolute;
+          z-index: 20 ;
+        }
+      }
+    }
+  }
+  .category{
+    position: absolute;
+    top: 228px;
+    left: 65%;
+  }
+  .buttonBox{
+    position: absolute;
+    left: 10%;
+    bottom: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .window{
+      text-align: center;
+    }
+    .buttons{
+      display: inherit;
+      .prevBtn,.nextBtn{
+        z-index: 20;
+        left: -100px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+      }
+      .nextBtn{
+        left: 0;
+      }
+    }
+
+
   }
 }
-.category{
-
-}
-
-
-
 
 

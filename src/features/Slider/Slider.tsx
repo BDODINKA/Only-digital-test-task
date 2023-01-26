@@ -12,14 +12,26 @@ import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 
 import { data } from '../../app/mockData/data'
+import { Button } from '../../common/button/button'
 
 import style from './slider.module.scss'
 
 export const Slider = () => {
   const swiperRef = useRef<SwiperCore>()
 
+  const datas = data.category.find((el, i) => el['world'])
+
+  console.log(datas && datas['world'].map(el => el))
+
   return (
     <div className={style.wrapper}>
+      <Button
+        disabled={false}
+        onClick={() => swiperRef.current?.slidePrev()}
+        className={style.prevBtn}
+      >
+        Prev
+      </Button>
       <Swiper
         // install Swiper module
         modules={[Navigation, Pagination]}
@@ -32,23 +44,26 @@ export const Slider = () => {
         onSlideChange={() => console.log('slide change')}
         style={{ width: '90%' }}
       >
-        {/*{data.category.world.map((el, i) => (*/}
-        {/*  <SwiperSlide*/}
-        {/*    key={i}*/}
-        {/*    className={style.slider}*/}
-        {/*    style={{ width: '1000px !important', height: '90px' }}*/}
-        {/*  >*/}
-        {/*    <h5 className={style.title}>{el.date}</h5>*/}
-        {/*    <p className={style.description}>{el.description}</p>*/}
-        {/*  </SwiperSlide>*/}
-        {/*))}*/}
+        {datas &&
+          datas['world'].map((el, i) => (
+            <SwiperSlide
+              key={i}
+              className={style.slider}
+              style={{ width: '1000px !important', height: '90px' }}
+            >
+              <h5 className={style.title}>{el.date}</h5>
+              <p className={style.description}>{el.description}</p>
+            </SwiperSlide>
+          ))}
       </Swiper>
-      <div onClick={() => swiperRef.current?.slidePrev()} className={style.prevBtn}>
-        Prev
-      </div>
-      <div onClick={() => swiperRef.current?.slideNext()} className={style.nextBtn}>
+
+      <Button
+        disabled={false}
+        onClick={() => swiperRef.current?.slideNext()}
+        className={style.nextBtn}
+      >
         Next
-      </div>
+      </Button>
     </div>
   )
 }

@@ -49,6 +49,16 @@
     top: 50%;
     z-index: 20;
     transform: translate(-50%, 0);
+    border: none;
+    background: #FFFFFF;
+    box-shadow: 0 0 15px rgba(56, 119, 238, 0.1);
+    &:after{
+      transform: translate(6px, -12px);
+    }
+    &:before{
+      transform: translate(6px, 12px);
+    }
+
   }
 
   .prevBtn {
@@ -56,6 +66,19 @@
     left: 0;
     transform: translate( 50%, 160%);
     z-index: 20;
+    border: none;
+    background: #FFFFFF;
+    box-shadow: 0 0 15px rgba(56, 119, 238, 0.1);
+    &:after{
+      background: #3877EE;
+      transform: translate(6px, 0);
+      rotate: 315deg;
+    }
+    &:before{
+      background: #3877EE;
+      rotate: 45deg;
+      transform: translate(6px, 0px);
+    }
   }
 
 }

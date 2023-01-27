@@ -18,14 +18,16 @@ export const Circle = () => {
   const [disabled, setDisabled] = useState(false)
   // const rotateNumbers = [-120, -180, -240, -300, 0, -60]
 
-  const tl = gsap
-    .timeline({ paused: true })
-    .to('.show', { opacity: 0, display: 'none' })
-    .to('.show', { delay: 1, opacity: 1, display: 'block', duration: 0.5 })
-
   useEffect(() => {
-    tl.resume()
+    const tl = gsap
+      .timeline()
+      .to('.show', { opacity: 0, display: 'none' })
+      .pause(4)
+      .to('.show', { opacity: 1, display: 'block', duration: 1 })
+
     setTimeout(() => {
+      tl.removePause(1)
+      tl.resume(3)
       setDisabled(false)
     }, 1000)
   }, [rotateCircle])
@@ -43,6 +45,7 @@ export const Circle = () => {
 
   return (
     <div className={style.wrapper}>
+      {<div className={`${style.category} show`}>{Object.keys(category)}</div>}
       <div className={style.buttonBox}>
         <div className={style.window}>{`0${currentIndex + 1}/0${data.category.length}`}</div>
         <div className={style.buttons}>
@@ -59,7 +62,6 @@ export const Circle = () => {
         </div>
       </div>
       <div className={`${style.circle} active`}>
-        {<div className={`${style.category} show`}>{Object.keys(category)}</div>}
         {data.category.map((el, i) => (
           <div className={style.block} style={{ rotate: rotateCircle[i] + 'deg' }} key={i}>
             <div className={style.square} onClick={() => onClickHandler(el, i)}>

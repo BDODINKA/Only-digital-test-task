@@ -75,6 +75,7 @@
     }
     .buttons{
       display: inherit;
+      gap: 20px;
       .prevBtn,.nextBtn{
         z-index: 20;
         left: -100px;
@@ -85,6 +86,13 @@
       }
       .nextBtn{
         left: 0;
+        rotate: 180deg;
+        &:after{
+          transform: translate(6px, -16px);
+        }
+        &:before{
+          transform: translate(10px, 12px);
+        }
       }
     }
 

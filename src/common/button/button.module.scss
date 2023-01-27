@@ -2,4 +2,31 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  background: transparent;
+  border: 1px solid rgba(66, 86, 122, 1);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  &:disabled{
+    border: 1px solid #42567A;
+    opacity: 0.5;
+  }
+  &:before{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 10px;
+    rotate: -45deg;
+    left: 10px;
+    background: #42567A;
+    transform: translate(8px, 16px);
+  }
+  &:after{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 10px;
+    left: 10px;
+    background: #42567A;
+    rotate: 45deg;
+    transform: translate(10px, -14px);
+  }
 }

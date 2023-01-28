@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react'
 
 import './App.scss'
+import { useSelector } from 'react-redux'
+
+import { someError } from '../common/constants/errors'
 import { HistoryDate } from '../features/HistoryDate/HistoryDate'
 
 import { InitializeAppTC } from './appReducer'
-import { useAppDispatch } from './store'
+import { AppRootStateType, useAppDispatch } from './store'
 
 function App() {
   const dispatch = useAppDispatch()
+  const initialize = useSelector((state: AppRootStateType) => state.app.isInitialize)
 
-  debugger
   useEffect(() => {
     dispatch(InitializeAppTC())
   }, [])
+  if (!initialize) return <div>{someError}</div>
 
   return (
     <div className="App">

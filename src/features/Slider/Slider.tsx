@@ -23,7 +23,6 @@ export const Slider = (props: PropsType) => {
   const { currentCategory } = props
   const swiperRef = useRef<SwiperCore>()
 
-  console.log(currentCategory)
   if (!currentCategory) return null
 
   return (

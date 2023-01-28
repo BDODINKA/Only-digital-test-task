@@ -2,7 +2,9 @@ import { data } from '../mockData/data'
 
 export const Api = {
   getAppStatus() {
-    return data
+    return new Promise(resolve => {
+      resolve(true)
+    })
   },
   getHistoryData() {
     return new Promise(resolve => {

@@ -17,7 +17,7 @@ export type HistoryStateType = {
   loading: LoadType
   ErrorMessage: Error
   data: DataType
-  key: string | null
+  key: string
   currentCategory: ViewItemType[]
 }
 
@@ -44,22 +44,25 @@ const slice = createSlice({
     loading: 0,
     ErrorMessage: null,
     data: {} as DataType,
-    key: null,
+    key: '',
     currentCategory: [],
   } as HistoryStateType,
   reducers: {
     PreloaderAC: (state, action: PayloadAction<{ status: LoadType }>) => {
       state.loading = action.payload.status
     },
-    setCategoryKeyAC: (state, action: PayloadAction<{ key: string }>) => {
-      state.key = action.payload.key
-    },
-    setCurrentCategoryAC: (state, action: PayloadAction<{ currentCategory: ViewItemType[] }>) => {
-      state.currentCategory = action.payload.currentCategory
+    setCurrentCategoryAC: (state, action: PayloadAction<{ currentIndex: number }>) => {
+      const cat = state.data.category.find((el, i) => i === action.payload.currentIndex)
+
+      if (cat) {
+        const key = Object.keys(cat).toString()
+
+        state.currentCategory = state.data.category[action.payload.currentIndex][key]
+      }
     },
   },
   extraReducers: builder => {
-    builder.addCase(getHistoryDateTC.fulfilled, (state, action) => {
+    builder.addCase(getHistoryDateTC.fulfilled, (state, action: PayloadAction<DataType>) => {
       state.data = action.payload
     })
     builder.addCase(getHistoryDateTC.rejected, (state, action) => {
@@ -74,4 +77,4 @@ const slice = createSlice({
 
 export const historyDateReducer = slice.reducer
 
-export const { PreloaderAC, setCurrentCategoryAC, setCategoryKeyAC } = slice.actions
+export const { PreloaderAC, setCurrentCategoryAC } = slice.actions

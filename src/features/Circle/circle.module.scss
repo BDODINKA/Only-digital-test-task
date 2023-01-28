@@ -46,6 +46,11 @@
         .index{
           position: absolute;
           z-index: 20 ;
+          -moz-transform: none;
+          -webkit-transform: none;
+          -o-transform: none;
+          -ms-transform: none;
+          transform: none;
         }
       }
     }

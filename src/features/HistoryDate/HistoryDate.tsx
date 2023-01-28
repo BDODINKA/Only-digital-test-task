@@ -18,10 +18,7 @@ export const HistoryDate = () => {
 
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
-  const [datePeriod, setDatePeriod] = useState<{ curr: number; next: number }>({
-    curr: 1820,
-    next: 1720,
-  })
+  const [datePeriod, setDatePeriod] = useState([1990, 2000])
 
   useEffect(() => {
     if (!category) {
@@ -36,14 +33,28 @@ export const HistoryDate = () => {
     setCurrentIndex(idx)
 
     dispatch(setCurrentCategoryAC({ currentIndex }))
+
+    changeDateHandler()
+  }
+
+  const changeDateHandler = () => {
+    const arrDate: number[] = []
+
+    currentCategory.forEach(el => arrDate.push(el.date))
+    const sortDate = arrDate.sort((a, b) => a - b)
+
+    setDatePeriod([1220, 2020])
+    console.log(arrDate, sortDate)
   }
 
   if (!category) return <div>Render</div>
+  console.log(datePeriod)
 
   return (
     <>
       <div className={style.dates}>
-        <Dates currentDate={datePeriod.curr} nextDate={datePeriod.next} time={100} />
+        <Dates date={datePeriod[0]} />
+        <Dates date={datePeriod[1]} />
       </div>
       <Circle
         category={category}
@@ -51,6 +62,12 @@ export const HistoryDate = () => {
         currentIndex={currentIndex}
       />
       <Slider currentCategory={currentCategory} />
+      <button
+        onClick={changeDateHandler}
+        style={{ position: 'absolute', width: '200px', height: '100px', zIndex: 10, bottom: '0' }}
+      >
+        Click
+      </button>
     </>
   )
 }

@@ -10,18 +10,21 @@ import 'swiper/scss'
 import 'swiper/scss/navigation'
 
 import 'swiper/scss/pagination'
-
-import { data } from '../../app/mockData/data'
+import { ViewItemType } from '../../app/mockData/types/dataTypes'
 import { Button } from '../../common/button/button'
 
 import style from './slider.module.scss'
 
-export const Slider = () => {
+type PropsType = {
+  currentCategory: ViewItemType[]
+}
+
+export const Slider = (props: PropsType) => {
+  const { currentCategory } = props
   const swiperRef = useRef<SwiperCore>()
 
-  const datas = data.category.find((el, i) => el['world'])
-
-  console.log(datas && datas['world'].map(el => el))
+  console.log(currentCategory)
+  if (!currentCategory) return null
 
   return (
     <div className={style.wrapper}>
@@ -29,9 +32,7 @@ export const Slider = () => {
         disabled={false}
         onClick={() => swiperRef.current?.slidePrev()}
         className={style.prevBtn}
-      >
-        Prev
-      </Button>
+      />
       <Swiper
         // install Swiper module
         modules={[Navigation, Pagination]}
@@ -48,26 +49,23 @@ export const Slider = () => {
         containerModifierClass={style.swrapper}
         freeMode={true}
       >
-        {datas &&
-          datas['world'].map((el, i) => (
-            <SwiperSlide
-              key={i}
-              className={style.slider}
-              style={{ width: '1000px !important', height: '90px' }}
-            >
-              <h5 className={style.title}>{el.date}</h5>
-              <p className={style.description}>{el.description}</p>
-            </SwiperSlide>
-          ))}
+        {currentCategory.map((el, i) => (
+          <SwiperSlide
+            key={i}
+            className={style.slider}
+            style={{ width: '1000px !important', height: '90px' }}
+          >
+            <h5 className={style.title}>{el.date}</h5>
+            <p className={style.description}>{el.description}</p>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       <Button
         disabled={false}
         onClick={() => swiperRef.current?.slideNext()}
         className={style.nextBtn}
-      >
-        Next
-      </Button>
+      />
     </div>
   )
 }

@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { AppRootStateType, useAppDispatch } from '../../app/store'
+import style from '../../pages/main.module.scss'
 import { Circle } from '../Circle/Circle'
+import { Dates } from '../Dates/Dates'
 import { Slider } from '../Slider/Slider'
 
 import { getHistoryDateTC, setCurrentCategoryAC } from './historyDate.reducer'
@@ -16,9 +18,13 @@ export const HistoryDate = () => {
 
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
+  const [datePeriod, setDatePeriod] = useState<{ curr: number; next: number }>({
+    curr: 1820,
+    next: 1720,
+  })
+
   useEffect(() => {
     if (!category) {
-      debugger
       dispatch(getHistoryDateTC())
     }
     if (category) {
@@ -35,13 +41,16 @@ export const HistoryDate = () => {
   if (!category) return <div>Render</div>
 
   return (
-    <div>
+    <>
+      <div className={style.dates}>
+        <Dates currentDate={datePeriod.curr} nextDate={datePeriod.next} time={100} />
+      </div>
       <Circle
         category={category}
         onChangeCategory={index => onChangeCategory(index)}
         currentIndex={currentIndex}
       />
       <Slider currentCategory={currentCategory} />
-    </div>
+    </>
   )
 }

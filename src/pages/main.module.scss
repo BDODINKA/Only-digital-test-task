@@ -64,28 +64,30 @@
 
     }
 
-    .dates {
-      display: flex;
-      font-family: 'PT Sans', sans-serif;
-      font-weight: 700;
-      font-size: clamp(56px, 20cqi, 200px);
-      line-height: 160px;
-      justify-content: space-between;
-      color: #EF5DA8;
-      width: 973px;
-      z-index: 2;
-      position: absolute;
 
-
-      div:nth-child(1) {
-        color: $color-secondary;
-      }
-    }
 
   }
 
 
 }
+.dates {
+  display: flex;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(56px, 20cqi, 200px);
+  line-height: 160px;
+  justify-content: space-between;
+  color: #EF5DA8;
+  width: 973px;
+  z-index: 2;
+  position: absolute;
+
+
+  div:nth-child(1) {
+    color: $color-secondary;
+  }
+}
+
 
 @media (max-width: 1024px) {
   .wrapper {

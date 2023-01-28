@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { Api } from '../../app/mockApi/Api'
-import { DataType, ViewItemType } from '../../app/mockData/types/dataTypes'
+import { CategoryType, DataType, ViewItemType } from '../../app/mockData/types/dataTypes'
 import { someError } from '../../common/constants/errors'
 
 export enum LoadType {
@@ -19,6 +19,7 @@ export type HistoryStateType = {
   data: DataType
   key: string
   currentCategory: ViewItemType[]
+  date: number[]
 }
 
 export const getHistoryDateTC = createAsyncThunk<
@@ -30,7 +31,7 @@ export const getHistoryDateTC = createAsyncThunk<
   try {
     const res = await Api.getHistoryData()
 
-    return res as DataType
+    return res
   } catch (reason) {
     rejectWithValue(reason as { error: Error })
   } finally {
@@ -46,6 +47,7 @@ const slice = createSlice({
     data: {} as DataType,
     key: '',
     currentCategory: [],
+    date: [],
   } as HistoryStateType,
   reducers: {
     PreloaderAC: (state, action: PayloadAction<{ status: LoadType }>) => {
@@ -58,6 +60,16 @@ const slice = createSlice({
         const key = Object.keys(cat).toString()
 
         state.currentCategory = state.data.category[action.payload.currentIndex][key]
+
+        const arrDate = state.data.category[action.payload.currentIndex][key].map(el => el.date)
+
+        const sortDate = arrDate.sort((a, b) => a - b)
+
+        if (state.date) {
+          state.date = [sortDate[0], sortDate[sortDate.length - 1]]
+        } else {
+          state.date = [sortDate[0], sortDate[0]]
+        }
       }
     },
   },

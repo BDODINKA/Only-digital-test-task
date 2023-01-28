@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 type PropsType = {
   date: number
@@ -15,6 +15,15 @@ export const Dates = (props: PropsType) => {
     setNewDate(date)
   }, [date])
 
+  useEffect(() => {
+    if (viewDate === 0) {
+      setOldDate(newDate)
+      setViewDate(newDate)
+    } else {
+      if (newDate !== oldDate) newDateDebounce(oldDate, newDate)
+    }
+  }, [newDate])
+
   const changeWithDebounce = (time: number, caseType: 'decr' | 'incr') => {
     setTimeout(() => {
       setOldDate((prev: number) => {
@@ -30,10 +39,10 @@ export const Dates = (props: PropsType) => {
     if (oldDate !== newDate) {
       switch (oldDate < newDate) {
         case true:
-          changeWithDebounce(10, 'incr')
+          changeWithDebounce(100, 'incr')
           break
         case false:
-          changeWithDebounce(10, 'decr')
+          changeWithDebounce(100, 'decr')
           break
         default:
           break
@@ -43,46 +52,5 @@ export const Dates = (props: PropsType) => {
     }
   }
 
-  useEffect(() => {
-    if (viewDate === 0) {
-      setOldDate(newDate)
-      setViewDate(newDate)
-    } else {
-      if (newDate !== oldDate) newDateDebounce(oldDate, newDate)
-    }
-  }, [newDate])
-
-  // const [dateNext, setDateNext] = useState(nextDate)
-  //
-  // const intervalRef: { current: NodeJS.Timeout | null } = useRef(null)
-  //
-  // console.log(currentDate)
-  // console.log(nextDate)
-  // useEffect(() => {
-  //   console.log(currentDate)
-  // }, [currentDate])
-  //
-  // useEffect(() => {
-  //   if (date > dateNext) {
-  //     intervalRef.current = setInterval(() => {
-  //       setDate(date => date - 1)
-  //     }, time)
-  //   } else {
-  //     intervalRef.current = setInterval(() => {
-  //       setDate(date => date + 1)
-  //     }, time)
-  //   }
-  //
-  //   return () => clearInterval(intervalRef.current as NodeJS.Timeout)
-  // }, [currentDate, nextDate])
-  //
-  // const cancelInterval = () => {
-  //   if (date === nextDate) {
-  //     clearInterval(intervalRef.current as NodeJS.Timeout)
-  //   }
-  // }
-  //
-  // cancelInterval()
-
-  return <div className={className}>{viewDate}</div>
+  return <div className={className}>{`${viewDate}`}</div>
 }

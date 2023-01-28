@@ -25,7 +25,7 @@ export const InitializeAppTC = createAsyncThunk<{}, undefined, { rejectValue: { 
   async (_, { dispatch, rejectWithValue }) => {
     dispatch(PreloaderAC({ status: 3 }))
     try {
-      await Api.getAppStatus()
+      return await Api.getAppStatus()
     } catch (reason) {
       return rejectWithValue(reason as { error: Error })
     } finally {

@@ -16,8 +16,8 @@ function App() {
   useEffect(() => {
     dispatch(InitializeAppTC())
   }, [])
+
   if (!initialize) return <div>{someError}</div>
-  ;[{ value: 1, Ox: '', Oy: '', isHovered: false }]
 
   return (
     <div className="App">

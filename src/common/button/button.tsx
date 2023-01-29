@@ -3,7 +3,7 @@ import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
 import style from './button.module.scss'
 
 type PropsType = {
-  disabled: boolean
+  disabled?: boolean
 } & DefaultButtonPropsType
 
 type DefaultButtonPropsType = DetailedHTMLProps<

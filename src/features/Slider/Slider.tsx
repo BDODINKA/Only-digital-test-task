@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -22,16 +22,13 @@ type PropsType = {
 export const Slider = (props: PropsType) => {
   const { currentCategory } = props
   const swiperRef = useRef<SwiperCore>()
-
-  if (!currentCategory) return null
+  const [disabledBtn, setDisabledBtn] = useState<null | number>(null)
 
   return (
     <div className={style.wrapper}>
-      <Button
-        disabled={false}
-        onClick={() => swiperRef.current?.slidePrev()}
-        className={style.prevBtn}
-      />
+      {disabledBtn !== 0 && (
+        <Button onClick={() => swiperRef.current?.slidePrev()} className={style.prevBtn} />
+      )}
       <Swiper
         // install Swiper module
         modules={[Navigation, Pagination]}
@@ -39,14 +36,19 @@ export const Slider = (props: PropsType) => {
         slidesPerView={3}
         onBeforeInit={swiper => {
           swiperRef.current = swiper
+          setDisabledBtn(swiper.realIndex)
+        }}
+        onSlideChange={swiper => {
+          setDisabledBtn(swiper.realIndex)
         }}
         pagination={{ clickable: true, enabled: false }} //show pagination
         style={{ width: '90%', height: '100px' }}
         centeredSlides={true}
+        uniqueNavElements={true}
         grabCursor={true}
         className={style.swiper}
-        containerModifierClass={style.swrapper}
         freeMode={true}
+        watchOverflow={true}
       >
         {currentCategory.map((el, i) => (
           <SwiperSlide
@@ -59,12 +61,9 @@ export const Slider = (props: PropsType) => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <Button
-        disabled={false}
-        onClick={() => swiperRef.current?.slideNext()}
-        className={style.nextBtn}
-      />
+      {disabledBtn !== currentCategory.length - 1 && (
+        <Button onClick={() => swiperRef.current?.slideNext()} className={style.nextBtn} />
+      )}
     </div>
   )
 }

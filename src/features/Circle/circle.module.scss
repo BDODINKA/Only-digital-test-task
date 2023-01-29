@@ -12,7 +12,9 @@
     width: 530px;
     height: 530px;
     position: relative;
-    border: 1px solid black;
+    border: 1px solid rgba(66, 86, 122, 0.2);
+
+
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -24,8 +26,7 @@
       transform: rotate(120deg);
       position: absolute;
       .square {
-        background: white;
-        border: 1px solid black;
+        background: #42567A;
         width: 6px;
         height: 6px;
         border-radius: 50%;
@@ -33,9 +34,9 @@
         z-index: 10;
         font-size: 0;
         &:hover{
-          background: #EF5DA8;
+          background: #F4F5F9;
           transform: translate(-40% ,-50%);
-          border: 1px solid black;
+          border: 1px solid rgba(48, 62, 88, 0.5);
           width: 56px;
           height: 56px;
           font-size: 16px;
@@ -43,12 +44,24 @@
           align-items: center;
           justify-content: center;
         }
+        &.current{
+          background: #F4F5F9;
+          transform: translate(-40% ,-50%);
+          border: 1px solid rgba(48, 62, 88, 0.5);
+          width: 56px;
+          height: 56px;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+
         .index{
           position: absolute;
           z-index: 20 ;
-
-
         }
+
       }
     }
   }

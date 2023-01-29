@@ -76,7 +76,12 @@ export const Circle = (props: PropsType) => {
         {<div className={`${style.category} show`}>{Object.keys(category[currentIndex])}</div>}
         {category.map((el, i) => (
           <div className={style.block} style={{ rotate: rotateCircle[i] + 'deg' }} key={i}>
-            <div className={style.square} onClick={() => onClickHandler(el, i)}>
+            <div
+              className={
+                currentIndex === i ? `${style.square} ${style.current}` : `${style.square}`
+              }
+              onClick={() => onClickHandler(el, i)}
+            >
               <div className={`${style.index} active`} style={{ rotate: rot[i] + 'deg' }}>
                 {i + 1}
               </div>

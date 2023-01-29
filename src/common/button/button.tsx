@@ -14,12 +14,10 @@ export const Button = (props: PropsType) => {
   const { className, onClick, disabled } = props
 
   return (
-    <div>
-      <button
-        disabled={disabled}
-        className={className ? `${style.Btn} ${className}` : style.Btn}
-        onClick={onClick}
-      ></button>
-    </div>
+    <button
+      disabled={disabled}
+      className={className ? `${style.Btn} ${className}` : style.Btn}
+      onClick={onClick}
+    ></button>
   )
 }

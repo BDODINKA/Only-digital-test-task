@@ -4,8 +4,8 @@
 height: 100vh;
   .wrapper {
     min-height: calc(100vh - 80px);
-    border-left: 1px solid #42567A;
-    border-right: 1px solid #42567A;
+    border-left: 1px solid rgba(66, 86, 122, 0.1);
+    border-right: 1px solid rgba(66, 86, 122, 0.1);
     position: relative;
     &:after {
       content: "";
@@ -15,6 +15,7 @@ height: 100vh;
       left: 50%;
       top: 0;
       background: $color-primary;
+      opacity: 0.1;
     }
 
     &:before {
@@ -25,6 +26,7 @@ height: 100vh;
       top: 480px;
       left: 0;
       background: $color-primary;
+      opacity: 0.1;
     }
     .box{
       display: flex;
@@ -38,7 +40,7 @@ height: 100vh;
       font-family: 'PT Sans', sans-serif;
       font-style: normal;
       font-weight: 700;
-      font-size: clamp(20px, 4cqi, 56px);
+      font-size: clamp(20px, 6cqi, 56px);
       line-height: 120%;
       color: #42567A;
       padding-left: 4.05%;
@@ -72,14 +74,17 @@ height: 100vh;
   line-height: 160px;
   justify-content: space-between;
   color: #EF5DA8;
-  width: 973px;
   z-index: 2;
+  letter-spacing: -0.02em;
   margin: 96px auto 0;
+  gap: 80px;
 
 
   div:nth-child(1) {
     color: $color-secondary;
+
   }
+
 }
 
 

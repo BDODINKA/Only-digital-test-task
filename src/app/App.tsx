@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { someError } from '../common/constants/errors'
 import { HistoryDate } from '../features/HistoryDate/HistoryDate'
+import { Main } from '../pages/Main'
 
 import { InitializeAppTC } from './appReducer'
 import { AppRootStateType, useAppDispatch } from './store'
@@ -21,29 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      {/*<Main />*/}
-      <HistoryDate />
-      {/*<div className={'s'}>*/}
-      {/*  {[*/}
-      {/*    { x: 241 + 270 * Math.sin(-90), y: 270 + 270 * Math.sin(0) },*/}
-      {/*    { x: 270 + 270 * Math.sin(-120), y: 270 + 270 * Math.sin(-90) },*/}
-      {/*    { x: 270 + 270 * Math.sin(0), y: 270 + 270 * Math.sin(90) },*/}
-
-      {/*    // { x: 270 + 270 * Math.cos(90), y: 270 + 270 * Math.sin(90) },*/}
-      {/*    // { x: 270 + 270 * Math.cos(90), y: 270 + 270 * Math.sin(90) },*/}
-      {/*  ].map((el, i) => (*/}
-      {/*    <div*/}
-      {/*      key={i}*/}
-      {/*      style={{*/}
-      {/*        position: 'absolute',*/}
-      {/*        top: `${el.x}px`,*/}
-      {/*        right: `${el.y}px`,*/}
-      {/*      }}*/}
-      {/*    >*/}
-      {/*      {i}*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</div>*/}
+      <Main />
     </div>
   )
 }

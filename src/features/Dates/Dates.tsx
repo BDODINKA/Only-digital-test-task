@@ -52,5 +52,5 @@ export const Dates = (props: PropsType) => {
     }
   }
 
-  return <div className={className}>{`${viewDate}`}</div>
+  return <div className={className}>{viewDate}</div>
 }

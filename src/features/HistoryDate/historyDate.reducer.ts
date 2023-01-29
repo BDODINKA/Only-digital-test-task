@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { Api } from '../../app/mockApi/Api'
-import { CategoryType, DataType, ViewItemType } from '../../app/mockData/types/dataTypes'
+import { DataType, ViewItemType } from '../../app/mockData/types/dataTypes'
 import { someError } from '../../common/constants/errors'
 
 export enum LoadType {
@@ -29,9 +29,7 @@ export const getHistoryDateTC = createAsyncThunk<
 >('HISTORY/HISTORY-DATE', async (_, { dispatch, rejectWithValue }): Promise<DataType | any> => {
   dispatch(PreloaderAC({ status: 3 }))
   try {
-    const res = await Api.getHistoryData()
-
-    return res
+    return await Api.getHistoryData()
   } catch (reason) {
     rejectWithValue(reason as { error: Error })
   } finally {

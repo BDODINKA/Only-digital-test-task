@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { AppRootStateType, useAppDispatch } from '../../app/store'
+import { Wrapper } from '../../common/wrapper/Wrapper'
 import style from '../../pages/main.module.scss'
 import { Circle } from '../Circle/Circle'
 import { Dates } from '../Dates/Dates'
@@ -37,18 +38,23 @@ export const HistoryDate = () => {
 
   return (
     <>
-      {date && (
-        <div className={style.dates}>
-          <Dates date={date[0]} />
-          <Dates date={date[1]} />
+      <Wrapper className={style.wrapper}>
+        <div className={style.box}>
+          <div className={style.title}>Исторические даты</div>
+          {date && (
+            <div className={style.dates}>
+              <Dates date={date[0]} />
+              <Dates date={date[1]} />
+            </div>
+          )}
+          <Circle
+            category={category}
+            onChangeCategory={index => onChangeCategory(index)}
+            currentIndex={currentIndex}
+          />
+          <Slider currentCategory={currentCategory} />
         </div>
-      )}
-      <Circle
-        category={category}
-        onChangeCategory={index => onChangeCategory(index)}
-        currentIndex={currentIndex}
-      />
-      <Slider currentCategory={currentCategory} />
+      </Wrapper>
     </>
   )
 }

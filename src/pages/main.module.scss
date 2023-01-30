@@ -84,8 +84,6 @@ height: 100vh;
 
 @media (max-width: 1024px) {
   .wrapper {
-
-    //padding: 0 20px;
     &:after {
       display: none
     }
@@ -104,7 +102,6 @@ height: 100vh;
         &:before {
           display: none;
         }
-
       }
     }
       .dates{
@@ -112,9 +109,9 @@ height: 100vh;
       }
     }
 }
+
 @media (max-width: 576px){
   .wrapper{
-
     &:before{
       top: 293px!important;
     }
@@ -124,6 +121,5 @@ height: 100vh;
       line-height: 72px!important;
     }
   }
-
 }
 

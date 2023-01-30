@@ -1,3 +1,5 @@
+@import './src/_variables.scss';
+
 .wrapper{
   display: flex;
   justify-content: center;
@@ -59,7 +61,6 @@
           position: absolute;
           z-index: 20 ;
         }
-
       }
     }
   }
@@ -72,6 +73,7 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
+    color: $color-primary;
 
   }
   .buttonBox{

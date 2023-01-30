@@ -4,11 +4,11 @@ import './App.scss'
 import { useSelector } from 'react-redux'
 
 import { someError } from '../common/constants/errors'
-import { HistoryDate } from '../features/HistoryDate/HistoryDate'
 import { Main } from '../pages/Main'
+import { useAppDispatch } from '../utils/hooks/useDispatch'
 
 import { InitializeAppTC } from './appReducer'
-import { AppRootStateType, useAppDispatch } from './store'
+import { AppRootStateType } from './store'
 
 function App() {
   const dispatch = useAppDispatch()

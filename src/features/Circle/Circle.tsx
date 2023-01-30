@@ -4,8 +4,7 @@ import gsap from 'gsap'
 
 import { CategoryType } from '../../app/mockData/types/dataTypes'
 import { Button } from '../../common/button/button'
-import { rotateDeg, rotateReverse } from '../../utils/function/rotateDeg'
-import { Slider } from '../Slider/Slider'
+import { rotateWheel } from '../../utils/function/rotateWheel'
 
 import style from './circle.module.scss'
 
@@ -16,9 +15,9 @@ type PropsType = {
 }
 export const Circle = (props: PropsType) => {
   const { category, onChangeCategory, currentIndex } = props
-  const deg = rotateDeg(category.length, 0)
-  const [rotateCircle, setRotateCircle] = useState(deg)
-  const [rot, setRot] = useState(rotateReverse(deg.length, 0))
+  const deg = rotateWheel(category.length, 0)
+  const [rotate, setRotate] = useState(deg)
+  const [rotateReverse, setRotateReverse] = useState([-120, -180, -240, -300, 0, -60])
   const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
@@ -35,23 +34,16 @@ export const Circle = (props: PropsType) => {
     }, 1000)
 
     return () => clearTimeout(id)
-  }, [rotateCircle, currentIndex])
+  }, [rotate, currentIndex])
 
   const onClickHandler = (el: CategoryType, idx: number) => {
     setDisabled(true)
     if (currentIndex !== idx) {
       onChangeCategory(idx)
-      gsap.from('.active', { rotate: rotateCircle[idx], duration: 1 })
-      const rot1 = rotateCircle.map(el => el - rotateCircle[idx])
-      const rot2 = rotateReverse(6, rotateCircle[idx])
+      gsap.from('.active', { rotate: rotate[idx], duration: 1 })
+      const rot1 = rotate.map(el => el - rotate[idx])
 
-      console.log(rotateCircle)
-      console.log(rot1)
-      console.log(rot2)
-
-      // console.log(rot1)
-      setRotateCircle(rot1)
-      setRot(rot2)
+      setRotate(rot1)
     }
   }
 
@@ -75,14 +67,14 @@ export const Circle = (props: PropsType) => {
       <div className={`${style.circle} active`}>
         {<div className={`${style.category} show`}>{Object.keys(category[currentIndex])}</div>}
         {category.map((el, i) => (
-          <div className={style.block} style={{ rotate: rotateCircle[i] + 'deg' }} key={i}>
+          <div className={style.block} style={{ rotate: rotate[i] + 'deg' }} key={i}>
             <div
               className={
                 currentIndex === i ? `${style.square} ${style.current}` : `${style.square}`
               }
               onClick={() => onClickHandler(el, i)}
             >
-              <div className={`${style.index} active`} style={{ rotate: rot[i] + 'deg' }}>
+              <div className={`${style.index} active`} style={{ rotate: rotateReverse[i] + 'deg' }}>
                 {i + 1}
               </div>
             </div>

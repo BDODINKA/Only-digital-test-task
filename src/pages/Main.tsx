@@ -8,7 +8,6 @@ export const Main = () => {
   return (
     <main className={style.main}>
       <HistoryDate />
-      {/*<div style={{ height: '200px' }}></div>*/}
     </main>
   )
 }

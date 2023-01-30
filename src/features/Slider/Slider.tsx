@@ -4,7 +4,6 @@ import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperCore } from 'swiper/types'
 
-// Import Swiper styles
 import 'swiper/scss'
 
 import 'swiper/scss/navigation'

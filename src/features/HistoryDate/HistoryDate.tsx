@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import { useSelector } from 'react-redux'
 
-import { AppRootStateType, useAppDispatch } from '../../app/store'
+import { AppRootStateType } from '../../app/store'
 import { Wrapper } from '../../common/wrapper/Wrapper'
 import style from '../../pages/main.module.scss'
+import { useAppDispatch } from '../../utils/hooks/useDispatch'
 import { Circle } from '../Circle/Circle'
 import { Dates } from '../Dates/Dates'
 import { Slider } from '../Slider/Slider'

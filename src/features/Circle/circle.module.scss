@@ -130,6 +130,9 @@
     .buttonBox{
       top: 290px;
       left: 20px;
+      .buttons{
+        gap: 0;
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -24,38 +24,50 @@ export const Slider = (props: PropsType) => {
   const swiperRef = useRef<SwiperCore>()
   const [disabledBtn, setDisabledBtn] = useState<null | number>(null)
 
+  console.log(disabledBtn)
+
   return (
     <div className={style.wrapper}>
       {disabledBtn !== 0 && (
         <Button onClick={() => swiperRef.current?.slidePrev()} className={style.prevBtn} />
       )}
       <Swiper
-        // install Swiper module
         modules={[Navigation, Pagination]}
         spaceBetween={50}
         slidesPerView={3}
+        breakpoints={{
+          575: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          767: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1023: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+        }}
         onBeforeInit={swiper => {
           swiperRef.current = swiper
           setDisabledBtn(swiper.realIndex)
         }}
         onSlideChange={swiper => {
-          setDisabledBtn(swiper.realIndex)
+          setDisabledBtn(swiper.activeIndex)
         }}
-        pagination={{ clickable: true, enabled: false }} //show pagination
+        pagination={{
+          el: '.pagination',
+          clickable: true,
+        }}
         style={{ width: '90%', height: '100px' }}
-        centeredSlides={true}
         uniqueNavElements={true}
         grabCursor={true}
         className={style.swiper}
         freeMode={true}
-        watchOverflow={true}
       >
         {currentCategory.map((el, i) => (
-          <SwiperSlide
-            key={i}
-            className={style.slider}
-            style={{ width: '1000px !important', height: '90px' }}
-          >
+          <SwiperSlide key={i} className={style.slider}>
             <h5 className={style.title}>{el.date}</h5>
             <p className={style.description}>{el.description}</p>
           </SwiperSlide>
@@ -64,6 +76,7 @@ export const Slider = (props: PropsType) => {
       {disabledBtn !== currentCategory.length - 1 && (
         <Button onClick={() => swiperRef.current?.slideNext()} className={style.nextBtn} />
       )}
+      <div className={'pagination'}></div>
     </div>
   )
 }

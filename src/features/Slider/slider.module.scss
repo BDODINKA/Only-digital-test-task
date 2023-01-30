@@ -1,8 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Sans:wght@400;700&display=swap');
+
 :global(.swiper-wrapper){
-  position: relative;
-  left: -33%;
   padding-top: 10px;
+  left: -33%;
+}
+:global(.pagination){
+  position: absolute;
+  top: 269px;
+  padding-bottom: 32px;
+  display: none;
+;
+}
+:global(.swiper-pagination-bullet){
+  width: 6px;
+  height: 6px;
+  background: rgba(66, 86, 122, 0.4);
+}
+:global(.swiper-pagination-bullet-active){
+  background: #42567A;
 }
 .wrapper {
   width: 100%;
@@ -11,6 +25,7 @@
   padding-bottom: 104px;
 
   .swiper{
+
     height: 130px !important;
     z-index: 10;
   }
@@ -22,7 +37,7 @@
 
     .title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 25px;
+      font-size: clamp(16px,10cqi,25px);
       line-height: 120%;
       text-transform: uppercase;
       color: #3877EE;
@@ -34,12 +49,13 @@
       font-family: 'PT Sans', sans-serif;
       font-style: normal;
       font-weight: 400;
-      font-size: 20px;
-      line-height: 30px;
+      font-size: clamp(14px,10cqi,20px);
+      line-height: clamp(145%,10cqi,30px);
       text-overflow: ellipsis;
       overflow: hidden;
       height: 90px;
       margin: 0;
+      color:  #42567A;
     }
   }
 
@@ -81,4 +97,77 @@
     }
   }
 
+
+}
+
+@media(max-width: 1024px){
+  :global(.pagination){
+    display: block;
+    position: absolute;
+    top: 230px;
+  }
+  :global(.swiper-slide){
+    width: 350px!important;
+  }
+  :global(.swiper-wrapper){
+    transform: translate3d(325px, 0px, 0px) !important;
+    gap: 10px;
+  }
+
+  :global(.swiper-slide-next){
+    >h5{
+      opacity: 0.4;
+    }
+    >p{
+      opacity: 0.4;
+    }
+  }
+  :global(.swiper-slide){
+   width: 420px!important;
+  }
+
+  .wrapper{
+    margin-top: 78px;
+    .prevBtn,.nextBtn{
+      display: none;
+    }
+    padding-bottom: 0;
+    .swiper{
+      margin: 0;
+
+    }
+    .title {
+      width: 100px!important;
+    }
+
+    .description {
+
+    }
+  }
+}
+@media (max-width:768px) {
+  :global(.swiper-slide){
+    width: 320px!important;
+    margin: 0!important;
+  }
+  :global(.swiper-wrapper){
+    transform: translate3d(40%, 0px, 0px) !important;
+  }
+}
+@media (max-width:576px) {
+  :global(.swiper-slide){
+    width: 230px!important;
+    margin: 0!important;
+  }
+  :global(.swiper-slide-next){
+    >h5{
+      opacity: 0.4!important;
+    }
+    >p{
+      opacity: 0.4!important;
+    }
+  }
+  :global(.swiper-wrapper){
+    transform: translate3d(40%, 0px, 0px) !important;
+  }
 }
